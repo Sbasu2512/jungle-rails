@@ -1,0 +1,15 @@
+<tr>
+  <h2>Product Categories:</h2>
+
+  <h5>Create new Category:</h5>
+
+  <div class="well">
+    <%= link_to '+ New Category', [:new, :admin, :category], class: 'btn btn-info' %>
+  </div>
+
+  <td>
+    <% @categories.each do |category| %>
+      <li><%= "#{category.name}" %></li>
+    <% end %>
+  </td>
+</tr>

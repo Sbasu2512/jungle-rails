@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
-
+  #about page
   resources :about, only: [:index]
 
   resource :cart, only: [:show] do
@@ -15,26 +15,13 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:create, :show]
 
+  # namespace vs resource
   namespace :admin do
     root to: 'dashboard#show'
     resources :products, except: [:edit, :update, :show]
+    resources :categories, except: [:edit, :update, :show]
   end
 
-#   Prefix Verb   URI Pattern                   Controller#Action
-#              root GET    /                             products#index
-#          products GET    /products(.:format)           products#index
-#           product GET    /products/:id(.:format)       products#show
-#          category GET    /categories/:id(.:format)     categories#show
-#     add_item_cart POST   /cart/add_item(.:format)      carts#add_item
-#  remove_item_cart POST   /cart/remove_item(.:format)   carts#remove_item
-#              cart GET    /cart(.:format)               carts#show
-#            orders POST   /orders(.:format)             orders#create
-#             order GET    /orders/:id(.:format)         orders#show
-#        admin_root GET    /admin(.:format)              admin/dashboard#show
-#    admin_products GET    /admin/products(.:format)     admin/products#index
-#                   POST   /admin/products(.:format)     admin/products#create
-# new_admin_product GET    /admin/products/new(.:format) admin/products#new
-#     admin_product DELETE /admin/products/:id(.:format) admin/products#destroy
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
