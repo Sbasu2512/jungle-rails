@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "ProductDetails", type: :feature, js: true do
+RSpec.feature "AddToCarts", type: :feature, js: true do
   # pending "add some scenarios (or delete) #{__FILE__}"
   #! SETUP
   before :each do
@@ -17,17 +17,16 @@ RSpec.feature "ProductDetails", type: :feature, js: true do
     end
   end
 
-  scenario "User can navigate to the product page by clicking on products" do
-    #TODO: ACT
+  scenario "test if the cart is being updated or not" do
+    #TODO: Act: Go to the homepage 
     visit root_path
+    #TODO: Verify: if products are being displayed or not
     expect(page).to have_css 'article.product', count: 10
-    first("a[href='/products/10']").click
+    #TODO: Act: Click on the button
+    first('button i.fa-shopping-cart').click
+    #TODO: Wait: Wait till the page reloads
     sleep 1
-
-    #TODO: DEBUG / VERIFY
-    # save_screenshot
-    #TODO: VERIFY
-    
-    expect(page).to have_css 'article.product-detail'
+    #TODO: Verify: Check if the cart is updated or not
+    expect(find('nav ul.navbar-right')).to have_text 'My Cart (1)'
   end
 end

@@ -6,7 +6,9 @@ class UsersController < ApplicationController
   def create
     # AR model which will interact with our database and create a new user
     user = User.new(user_params)
-    if user.save
+    saveUser = user.save
+    
+    if saveUser
       session[:user_id] = user.id
       redirect_to '/'
     else

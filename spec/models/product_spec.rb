@@ -25,13 +25,12 @@ RSpec.describe Product, type: :model do
         category_id: @category[:id] 
       )
       expect(@product.errors.full_messages).to include("Name can't be blank")
-      # puts "Product is #{@product.inspect} "
     end
     #! test 
-    xit "should validate price" do
+    it "validate price" do
       @product = Product.create(
         name: 'Product',
-        price: nil,
+        price: false,
         quantity: 10,
         category_id: @category[:id]
       )
@@ -45,6 +44,7 @@ RSpec.describe Product, type: :model do
         quantity: nil,
         category_id: @category[:id]
       )
+      # puts "********   #{@product.inspect}"
       expect(@product.errors.full_messages).to include("Quantity can't be blank")
     end
     #! test 

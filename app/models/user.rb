@@ -10,21 +10,17 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   def self.authenticate_with_credentials(email, password)
-    email_stripped = email.strip.downcase
-    @user = User.where
-
-    @user = User.find_by email: email_stripped
-
-    if !@user
-      nil
+    email_stripped = email.downcase.strip
+    
+    user = User.find_by(email: email_stripped)
+    user_authenticate = user.authenticate(password)
+  
+    if user && user_authenticate
+      user
     else
-      authenticate = @user.authenticate(password)
-      if authenticate
-        @user
-      else
+        puts "not able to authenticate"
         nil
-      end
-      
     end
   end
+
 end

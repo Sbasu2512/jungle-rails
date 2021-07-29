@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if user = user.authenticate_with_credentials(params[:email], params[:password])
+    if user = User.authenticate_with_credentials(params[:email], params[:password])
       #TODO: success logic, log them in!
       # If the user exists AND the password entered is correct.
       if user
@@ -12,10 +12,11 @@ class SessionsController < ApplicationController
         # logged in when they navigate around our website.
         session[:user_id] = user.id
         redirect_to '/'
-    else
+      else
       #TODO: failure, render login form!
-      # If user's login doesn't work, send them back to the login form.
-      redirect_to '/login'
+        # If user's login doesn't work, send them back to the login form.
+        redirect_to '/login'
+      end
     end
   end
 
